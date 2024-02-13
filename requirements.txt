@@ -57,7 +57,6 @@ conda-build==2.1.5
 conda-content-trust==0.1.2
 conda-pack==0.7.1
 conda-package-handling
-conda-token
 conda-verify==3.4.2
 conda_index
 conda_package_streaming
