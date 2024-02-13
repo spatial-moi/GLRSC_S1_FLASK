@@ -9,8 +9,6 @@ alembic==1.13.1
 anaconda-catalogs
 anaconda-client
 anaconda-cloud-auth
-anaconda-navigator
-anaconda-project
 anyio
 appdirs==1.4.4
 applaunchservices
