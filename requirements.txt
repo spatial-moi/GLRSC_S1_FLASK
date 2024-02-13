@@ -160,7 +160,6 @@ kiwisolver
 lazy-object-proxy
 lazy_loader
 libarchive-c
-libmambapy
 linkify-it-py
 llvmlite
 lmdb
