@@ -56,10 +56,8 @@ conda==4.3.16
 conda-build==2.1.5
 conda-content-trust==0.1.2
 conda-pack==0.7.1
-conda-package-handling
-conda-verify==3.4.2
-conda_index
-conda_package_streaming
+conda-package-handling==2.2.0
+conda_package_streaming==0.9.0
 config==0.5.1
 constantly==15.1.0
 contourpy
