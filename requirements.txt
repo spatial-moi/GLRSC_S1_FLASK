@@ -6,7 +6,6 @@ aiosignal
 aiosqlite
 alabaster
 alembic==1.13.1
-anaconda-anon-usage
 anaconda-catalogs
 anaconda-client
 anaconda-cloud-auth
