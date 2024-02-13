@@ -55,7 +55,6 @@ comm
 conda==4.3.16
 conda-build==2.1.5
 conda-content-trust==0.1.2
-conda-libmamba-solver
 conda-pack==0.7.1
 conda-package-handling
 conda-repo-cli==1.0.75
