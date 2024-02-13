@@ -4,12 +4,13 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="5">
+          <list size="6">
             <item index="0" class="java.lang.String" itemvalue="clyent" />
             <item index="1" class="java.lang.String" itemvalue="conda-repo-cli" />
             <item index="2" class="java.lang.String" itemvalue="conda-verify" />
             <item index="3" class="java.lang.String" itemvalue="datashape" />
             <item index="4" class="java.lang.String" itemvalue="bcrypt" />
+            <item index="5" class="java.lang.String" itemvalue="anaconda-anon-usage" />
           </list>
         </value>
       </option>
