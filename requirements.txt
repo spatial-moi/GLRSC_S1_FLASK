@@ -24,9 +24,8 @@ Flask==3.0.0
 Flask-Bcrypt==1.0.1
 Flask-Cors==4.0.0
 Flask-JWT-Extended==4.6.0
-Flask-Migrate>=1.0
+Flask-Migrate=3.1.0
 Flask-SQLAlchemy==3.1.1
-Flask-Validator==1.4.2
 folium==0.14.0
 GeoAlchemy2==0.14.3
 gunicorn==21.2.0
@@ -86,3 +85,4 @@ watchdog==3.0.0
 webencodings==0.5.1
 websocket-client==0.58.0
 Werkzeug==3.0.1
+Flask-Validator==1.4.2
