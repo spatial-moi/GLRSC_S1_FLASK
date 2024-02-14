@@ -49,7 +49,6 @@ clyent==1.2.1
 colorama==0.4.6
 colorcet==3.0.1
 comm==0.1.2
-conda-build==2.1.5
 config==0.5.1
 constantly==23.10.4
 contourpy==1.2.0
