@@ -51,13 +51,6 @@ colorama==0.4.6
 colorcet==3.0.1
 comm==0.1.2
 conda-build==2.1.5
-conda-libmamba-solver==24.1.0
-conda-pack==0.6.0
-conda-package-handling==2.2.0
-conda_package_streaming==0.9.0
-conda-repo-cli==1.0.75
-conda-token==0.4.0
-conda-verify==3.4.2
 config==0.5.1
 constantly==23.10.4
 contourpy==1.2.0
