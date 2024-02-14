@@ -9,7 +9,6 @@ anaconda-client==1.2.2
 anaconda-cloud-auth==0.1.4
 anyio==4.2.0
 appdirs==1.4.4
-applaunchservices==0.3.0
 appnope==0.1.2
 appscript==1.1.2
 archspec==0.2.1
