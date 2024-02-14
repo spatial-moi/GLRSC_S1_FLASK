@@ -1,7 +1,6 @@
 from sqlalchemy import inspect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from flask_validator import ValidateString
 from sqlalchemy.orm import validates
 from sqlalchemy import Column, orm
 from geoalchemy2 import Geometry
@@ -34,13 +33,6 @@ class Account(db.Model, Base):
     location = Column(Geometry('POINT', srid=4326, spatial_index=True), nullable=True)
 
     # Validations => https://flask-validator.readthedocs.io/en/latest/index.html
-    @classmethod
-    def __declare_last__(cls):
-        ValidateString(Account.username, False, True, "The username type must be string")
-        ValidateString(Account.firstname, False, True, "The firstname type must be string")
-        ValidateString(Account.lastname, False, True, "The lastname type must be string")
-        ValidateString(Account.city, True, True, "The city type must be string")
-        ValidateString(Account.sex, True, True, "The sex type must be string")
 
     # Set an empty string to null for username field => https://stackoverflow.com/a/57294872
     @validates('username')
