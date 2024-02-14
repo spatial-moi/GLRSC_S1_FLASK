@@ -28,7 +28,7 @@ class StagingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.getenv("PRODUCTION_DATABASE_URL")
-    DATABASE_URL= "postgres://bmbrgtjhaqlarq:8150f5b7fb6d7375c"
+    DATABASE_URL= "postgres://bmbrgtjhaqlarq:8150f5b7fb6d7375c8cbe44359eece6009737aa262115a42da59f6a3907be05f@ec2-34-236-199-229.compute-1.amazonaws.com:5432/d6mimanr4ha1od"
 
 
 config = {
