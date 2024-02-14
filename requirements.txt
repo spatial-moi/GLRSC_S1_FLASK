@@ -10,7 +10,6 @@ anaconda-cloud-auth==0.1.4
 anyio==4.2.0
 appdirs==1.4.4
 appnope==0.1.2
-appscript==1.1.2
 archspec==0.2.1
 argon2-cffi==21.3.0
 argon2-cffi-bindings==21.2.0
@@ -92,7 +91,6 @@ fsspec==2023.10.0
 future==0.18.3
 gensim==4.3.0
 GeoAlchemy2==0.14.3
-gmpy2==2.1.2
 greenlet==3.0.1
 gunicorn==21.2.0
 h5py==3.9.0
@@ -257,7 +255,6 @@ python-lsp-black==1.2.1
 python-lsp-jsonrpc==1.0.0
 python-lsp-server==1.7.2
 python-slugify==5.0.2
-python-snappy==0.6.1
 pytoolconfig==1.2.6
 pytz==2020.1
 pyviz_comms==3.0.0
