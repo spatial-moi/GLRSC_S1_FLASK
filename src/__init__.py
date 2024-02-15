@@ -1,7 +1,6 @@
 import flask
 import os
 from flask import Flask
-from src.migrations.versions import downgrade
 from src.config import config
 from src.models import db
 from flask_migrate import Migrate
