@@ -12,7 +12,7 @@ from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-migrate = Migrate(app, db, command='downgrade')
+migrate = Migrate()
 app = flask.Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
 app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
