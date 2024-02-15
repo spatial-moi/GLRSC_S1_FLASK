@@ -13,7 +13,6 @@ from flask_bcrypt import Bcrypt
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
-migrate = Migrate()
 app = flask.Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
 app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
@@ -27,6 +26,7 @@ jwt = JWTManager(app)
 def create_app(config_mode):
     app.config.from_object(config[config_mode])
     app.register_blueprint(account_bp)
+    migrate = Migrate(app, db, command='migrate')
     db.init_app(app)
     migrate.init_app(app, db)
     from src.models import Account
