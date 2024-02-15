@@ -10,6 +10,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
 
+os.path.exists("alembic.ini")
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 migrate = Migrate()
