@@ -10,7 +10,7 @@ app = create_app(os.getenv("CONFIG_MODE"))
 @app.route("/api", methods=["GET"])
 def index():
     return {
-        "Server Home"
+        "Server Home": "API"
     }
 
 if __name__ == "__main__":
