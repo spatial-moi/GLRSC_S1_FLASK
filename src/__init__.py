@@ -1,7 +1,7 @@
 import flask
 import os
 from flask import Flask
-
+from src.migrations.versions import downgrade
 from src.config import config
 from src.models import db
 from flask_migrate import Migrate
@@ -32,7 +32,6 @@ def create_app(config_mode):
     migrate.init_app(app, db)
     from src.models import Account
     with app.app_context():
-        db.drop_all()
         db.create_all()
 
     return app
