@@ -19,7 +19,13 @@ app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json", "query_string"]
 app.config['JWT_SECRET_KEY'] = 'moairoutingclass27981231'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
-cors = CORS(app)
+
+cors_origin = [
+    'https://spatial-moi.github.io',
+    'http://localhost:3000'
+]
+
+cors = CORS(app, resources={r'/*': {"origins": cors_origin}})
 jwt = JWTManager(app)
 
 
@@ -30,6 +36,7 @@ def create_app(config_mode):
     migrate.init_app(app, db)
     from src.models import Account
     with app.app_context():
+        db.drop_all()
         db.create_all()
 
     return app

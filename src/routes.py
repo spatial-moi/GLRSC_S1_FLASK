@@ -1,5 +1,4 @@
 from flask import Blueprint
-
 from src.controllers.account_controllers import (generate, login, access, logout, delete, password,
                                                  store_location)
 account_bp = Blueprint('accounts', __name__)
