@@ -30,7 +30,6 @@ def create_app(config_mode):
     migrate.init_app(app, db)
     from src.models import Account
     with app.app_context():
-        db.drop_all()
         db.create_all()
 
     return app
