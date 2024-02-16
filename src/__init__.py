@@ -15,10 +15,13 @@ bcrypt = Bcrypt(app)
 migrate = Migrate()
 app = flask.Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
+app.config["DATABASE_URL"] = os.getenv("PRODUCTION_DATABASE_URL")
 app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json", "query_string"]
 app.config['JWT_SECRET_KEY'] = 'moairoutingclass27981231'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
+
+
 
 cors_origin = [
     'https://spatial-moi.github.io',
