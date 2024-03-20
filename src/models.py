@@ -5,22 +5,23 @@ from sqlalchemy.orm import validates
 from sqlalchemy import Column, orm
 from geoalchemy2 import Geometry
 
-db = SQLAlchemy()
+db = SQLAlchemy(engine_options={
+    'max_overflow': 30,
+    'pool_reset_on_return': 'commit',
+    'pool_size': 20,
+    'pool_timeout': 60
+})
 Base = orm.declarative_base()
-
-
-# ----------------------------------------------- #
-
-# SQL Datatype Objects => https://docs.sqlalchemy.org/en/14/core/types.html
 
 
 class Account(db.Model, Base):
     # Auto Generated Fields:
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True, autoincrement=True)
     created = db.Column(db.DateTime(timezone=True),
-                         default=datetime.now)  # The Date of the Instance Creation => Created one Time when Instantiation
+                        default=datetime.now)  # The Date of the Instance Creation => Created one Time when
+    # Instantiation
     updated = db.Column(db.DateTime(timezone=True), default=datetime.now,
-                         onupdate=datetime.now)  # The Date of the Instance Update => Changed with Every Update
+                        onupdate=datetime.now)  # The Date of the Instance Update => Changed with Every Update
 
     # Input by User Fields:
     username = db.Column(db.String(50), nullable=False, unique=True)
@@ -31,6 +32,9 @@ class Account(db.Model, Base):
     lastname = db.Column(db.String(50), nullable=False)
     sex = db.Column(db.String(50), nullable=True, unique=False)
     location = Column(Geometry('POINT', srid=4326, spatial_index=True), nullable=True)
+    record_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=True)
+    meeting_request = db.relationship("MeetingRequest", secondary="account_request", uselist=False,
+                                      back_populates="account")
 
     # Validations => https://flask-validator.readthedocs.io/en/latest/index.html
 
@@ -48,3 +52,36 @@ class Account(db.Model, Base):
 
     def __repr__(self):
         return "<%r>" % self.username
+
+
+class MeetingRequest(db.Model, Base):
+    # Auto Generated Fields:
+    id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True, autoincrement=True)
+    created = db.Column(db.DateTime(timezone=True),
+                        default=datetime.now)  # The Date of the Instance Creation => Created one Time when
+    # Instantiation
+    updated = db.Column(db.DateTime(timezone=True), default=datetime.now,
+                        onupdate=datetime.now)  # The Date of the Instance Update => Changed with Every Update
+    message = db.Column(db.String(75), nullable=False)
+    buffer = Column(Geometry('POLYGON', srid=4326, spatial_index=True), nullable=True)
+    status = db.Column(db.String(50), nullable=True)
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
+    account = db.relationship("Account", secondary="account_request", back_populates="meeting_request")
+
+
+class AccountRequest(db.Model, Base):
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), primary_key=True)
+    meeting_request_id = db.Column(db.Integer, db.ForeignKey('meeting_request.id'), primary_key=True)
+
+
+class ActiveMeeting(db.Model, Base):
+    id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True, autoincrement=True)
+    created = db.Column(db.DateTime(timezone=True),
+                        default=datetime.now)  # The Date of the Instance Creation => Created one Time when Instantiation
+    updated = db.Column(db.DateTime(timezone=True), default=datetime.now,
+                        onupdate=datetime.now)  # The Date of the Instance Update => Changed with Every Update
+    firstname = db.Column(db.String(50), nullable=False)
+    lastname = db.Column(db.String(50), nullable=False)
+    account_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=True)
+    location = Column(Geometry('POINT', srid=4326, spatial_index=True), nullable=True)
+    meeting_request_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=False)

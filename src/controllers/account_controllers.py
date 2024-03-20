@@ -1,7 +1,7 @@
 from src.services.account_service import generate_account, login_token, access_account, \
     account_logout, delete_account, change_password, store_geolocation
 
-
+import threading
 # ----------------------------------------------- #
 
 # Query Object Methods => https://docs.sqlalchemy.org/en/14/orm/query.html#sqlalchemy.orm.Query

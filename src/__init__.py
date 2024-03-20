@@ -4,11 +4,28 @@ from flask import Flask
 from src.config import config
 from src.models import db
 from flask_migrate import Migrate
-from src.routes import account_bp
+from src.routes import account_bp, request_bp, meeting_bp
 from datetime import timedelta
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
+from logging.config import dictConfig
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://flask.logging.wsgi_errors_stream',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
@@ -20,8 +37,10 @@ app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json", "query_string"]
 app.config['JWT_SECRET_KEY'] = 'moairoutingclass27981231'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
-
-
+app.config['SQLALCHEMY_POOL_SIZE'] = 30
+app.config['SQLALCHEMY_MAX_OVERFLOW'] = 30
+app.config['SQLALCHEMY_POOL_TIMEOUT'] = 60
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 10
 
 cors_origin = [
     'https://spatial-moi.github.io',
@@ -34,11 +53,18 @@ jwt = JWTManager(app)
 
 def create_app(config_mode):
     app.config.from_object(config[config_mode])
+
+    # register routes
     app.register_blueprint(account_bp)
+    app.register_blueprint(request_bp)
+    app.register_blueprint(meeting_bp)
+
     db.init_app(app)
     migrate.init_app(app, db)
-    from src.models import Account
+
+    from src.models import Account, MeetingRequest, AccountRequest, ActiveMeeting
     with app.app_context():
+        db.drop_all()
         db.create_all()
 
     return app
