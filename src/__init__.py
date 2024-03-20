@@ -48,6 +48,7 @@ def create_app(config_mode):
 
     from src.models import Account, MeetingRequest, AccountRequest, ActiveMeeting
     with app.app_context():
+        db.drop_all()
         db.create_all()
 
     return app
