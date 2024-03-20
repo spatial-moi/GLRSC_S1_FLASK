@@ -9,31 +9,15 @@ from datetime import timedelta
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
-from logging.config import dictConfig
 
-dictConfig({
-    'version': 1,
-    'formatters': {'default': {
-        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
-    }},
-    'handlers': {'wsgi': {
-        'class': 'logging.StreamHandler',
-        'stream': 'ext://flask.logging.wsgi_errors_stream',
-        'formatter': 'default'
-    }},
-    'root': {
-        'level': 'INFO',
-        'handlers': ['wsgi']
-    }
-})
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 migrate = Migrate()
 app = flask.Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
-app.config["DATABASE_URL"] = os.getenv("PRODUCTION_DATABASE_URL")
-app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URI")
+app.config["DATABASE_URL"] = os.getenv("PRODUCTION_DATABASE_URI")
+app.config["DATABASE_URI"] = os.getenv("PRODUCTION_DATABASE_URI")
 app.config["JWT_TOKEN_LOCATION"] = ["headers", "cookies", "json", "query_string"]
 app.config['JWT_SECRET_KEY'] = 'moairoutingclass27981231'
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)

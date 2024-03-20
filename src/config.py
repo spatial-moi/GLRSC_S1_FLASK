@@ -3,6 +3,7 @@ import load_dotenv
 
 load_dotenv.load_dotenv()
 
+
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
@@ -27,8 +28,9 @@ class StagingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.getenv("PRODUCTION_DATABASE_URL")
-    DATABASE_URI = "postgresql+psycopg2://postgres:postgres@localhost/postgres"
+    SQLALCHEMY_DATABASE_URI = os.getenv("PRODUCTION_DATABASE_URI")
+    DATABASE_URI = ("postgresql://ofkopswepkqqse:1af3d5936667d867a51de55c39084d283597d75edc218db5eeed34c27aebd55d@ec2"
+                    "-52-54-140-137.compute-1.amazonaws.com:5432/dlq3l8aq8ng2e")
 
 
 config = {
