@@ -10,7 +10,7 @@ def midpoint_two(origin, destination):
     print(threading.active_count())
     print(threading.enumerate())
     print(threading.current_thread())
-    user_graph = osmnx.graph_from_point(origin, 3200, 'network', 'walk')
+    user_graph = osmnx.graph_from_point(origin, 2000, 'network', 'walk')
 
     print(user_graph)
 
@@ -42,16 +42,12 @@ def midpoint_two(origin, destination):
     return locations
 
 
-def get_graph(origin):
-    return osmnx.graph_from_point(origin, 3200, 'network', 'walk')
-
-
 def midpoint_more(origin, longitudes, latitudes):
     midpoint_x = average_x(longitudes)
     midpoint_y = average_y(latitudes)
 
     midpoint_tuple = (midpoint_x, midpoint_y)
-    user_graph = osmnx.graph_from_point(origin, 3200, 'network', 'walk')
+    user_graph = osmnx.graph_from_point(origin, 2000, 'network', 'walk')
 
     midpointNode = osmnx.nearest_nodes(user_graph, midpoint_tuple[1], midpoint_tuple[0])
     print(midpointNode)
