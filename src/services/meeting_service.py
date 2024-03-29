@@ -24,7 +24,7 @@ def check_meetings(active_meeting, account):
         print(len(active_meeting))
         if len(active_meeting) != 2:
             print("More than two participants")
-            origin_point = shape.to_shape(account.location)
+            origin_point = shape.to_shape(meeting.location)
             origin_lon = origin_point.x
             origin_lat = origin_point.y
             longitudes.append(origin_lon)
@@ -46,19 +46,13 @@ def check_meetings(active_meeting, account):
 @jwt_required(optional=False)
 def midpoint():
     username = get_jwt_identity()
-    print(threading.active_count())
-
     account = Account.query.filter_by(username=username).first()
 
-    print(threading.active_count())
-    print(threading.current_thread())
-    print(threading.enumerate())
     request_form = request.form.to_dict()
 
     request_id = request_form['meeting_request_id']
 
     active_meeting = ActiveMeeting.query.filter_by(meeting_request_id=request_id).all()
-    print(active_meeting)
 
     route_info = check_meetings(active_meeting, account)
     print("route info returned")
@@ -77,7 +71,6 @@ def midpoint():
         "route_info": route_info
     })
 
-
 @jwt_required(optional=False)
 def get_requestor_midpoint():
     username = get_jwt_identity()
@@ -85,7 +78,6 @@ def get_requestor_midpoint():
     active_meeting = ActiveMeeting.query.filter_by(meeting_request_id=account.record_id).all()
 
     if len(active_meeting) == 1:
-        AccountRequest.query.filter_by(account_id=account.id, meeting_request_id=account.record_id).delete()
         ActiveMeeting.query.filter_by(meeting_request_id=account.record_id).delete()
         db.session.commit()
         return jsonify({

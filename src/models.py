@@ -33,8 +33,6 @@ class Account(db.Model, Base):
     sex = db.Column(db.String(50), nullable=True, unique=False)
     location = Column(Geometry('POINT', srid=4326, spatial_index=True), nullable=True)
     record_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=True)
-    meeting_request = db.relationship("MeetingRequest", secondary="account_request", uselist=False,
-                                      back_populates="account")
 
     # Validations => https://flask-validator.readthedocs.io/en/latest/index.html
 
@@ -65,13 +63,12 @@ class MeetingRequest(db.Model, Base):
     message = db.Column(db.String(75), nullable=False)
     buffer = Column(Geometry('POLYGON', srid=4326, spatial_index=True), nullable=True)
     status = db.Column(db.String(50), nullable=True)
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'))
-    account = db.relationship("Account", secondary="account_request", back_populates="meeting_request")
+    account_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=True)
 
 
 class AccountRequest(db.Model, Base):
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), primary_key=True)
-    meeting_request_id = db.Column(db.Integer, db.ForeignKey('meeting_request.id'), primary_key=True)
+    account_id = db.Column(db.Integer, primary_key=True, nullable=True, unique=False)
+    meeting_request_id = db.Column(db.Integer, primary_key=True, nullable=True, unique=False)
 
 
 class ActiveMeeting(db.Model, Base):

@@ -20,7 +20,7 @@ def send_request():
         return jsonify({"error": "Request pending"}), 409
 
     to_shapely = set_srid(shape.to_shape(account.location), 4326)
-    shapely_buffer = set_srid(buffer(to_shapely, .017, quad_segs=8, cap_style="square"), 4326)
+    shapely_buffer = set_srid(buffer(to_shapely, .02, quad_segs=8, cap_style="square"), 4326)
     wkt_buffer = WKTElement(shapely_buffer.wkt, srid=4326)
     request_form = request.form.to_dict()
 
@@ -36,13 +36,6 @@ def send_request():
 
     meeting_request = MeetingRequest.query.filter_by(account_id=account.id).first()
 
-    account_request = AccountRequest(
-        account_id=account.id,
-        meeting_request_id=meeting_request.id
-    )
-
-    db.session.add(account_request)
-    db.session.commit()
 
     # spatial search -
 
