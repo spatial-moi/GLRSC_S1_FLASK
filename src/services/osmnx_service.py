@@ -25,7 +25,8 @@ def midpoint_two(origin, destination):
     ## Route
 
     route = networkx.shortest_path(user_graph, originNode, destinationNode)
-
+    print("the route")
+    print(route)
     midpoint_val = math.trunc(len(route) / 2 - 1)
 
     midpoint_node = route[midpoint_val]
