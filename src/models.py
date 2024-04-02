@@ -83,4 +83,4 @@ class ActiveMeeting(db.Model, Base):
     account_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=True)
     location = Column(Geometry('POINT', srid=4326, spatial_index=True), nullable=True)
     meeting_request_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=False)
-    owner = db.Column(db.String(50), nullable=True)
+    owner = db.Column(db.Integer, nullable=True)

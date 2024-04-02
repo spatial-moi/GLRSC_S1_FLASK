@@ -40,7 +40,7 @@ def check_meetings(active_meeting, account):
         print("just two participants")
         return osmnx_service.midpoint_two(origin_tuple, destination)
 
-    requestor_record = ActiveMeeting.query.filter_by(owner='True')
+    requestor_record = ActiveMeeting.query.filter_by(owner=1).first()
     requestor_point = shape.to_shape(requestor_record.location)
     requestor_lon = requestor_point.x
     requestor_lat = requestor_point.y

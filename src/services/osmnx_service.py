@@ -121,7 +121,8 @@ def r_midpoint_more(origin, longitudes, latitudes):
 def average_x(longitudes):
     total_x = 0
     for longitude in longitudes:
-        total_x += longitude
+        print(total_x)
+        total_x = longitude + total_x
     new_x = total_x / len(longitudes)
     return new_x
 
@@ -129,7 +130,8 @@ def average_x(longitudes):
 def average_y(latitudes):
     total_y = 0
     for latitude in latitudes:
-        total_y += latitude
+        print(total_y)
+        total_y = latitude + total_y
 
     new_y = total_y / len(latitudes)
     return new_y

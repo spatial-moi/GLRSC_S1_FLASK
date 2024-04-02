@@ -77,7 +77,7 @@ def send_request():
             location=account.location,
             account_id=account.id,
             meeting_request_id=account.record_id,
-            owner='True'
+            owner=1
         )
         db.session.add(active_meeting)
         db.session.commit()
