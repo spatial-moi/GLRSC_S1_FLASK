@@ -129,7 +129,7 @@ def average_x(longitudes):
     print(len(longitudes))
     print("average x")
     print(mean_x)
-    return mean_x
+    return round(mean_x, 5)
 
 
 def average_y(latitudes):
@@ -139,4 +139,4 @@ def average_y(latitudes):
     print(len(latitudes))
     print("average y")
     print(mean_y)
-    return mean_y
+    return round(mean_y, 5)
