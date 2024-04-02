@@ -40,7 +40,12 @@ def check_meetings(active_meeting, account):
         print("just two participants")
         return osmnx_service.midpoint_two(origin_tuple, destination)
 
-    return osmnx_service.midpoint_more(origin_tuple, longitudes, latitudes)
+    requestor_record = ActiveMeeting.query.filter_by(owner='True')
+    requestor_point = shape.to_shape(requestor_record.location)
+    requestor_lon = requestor_point.x
+    requestor_lat = requestor_point.y
+    requestor_tuple = (requestor_lat, requestor_lon)
+    return osmnx_service.midpoint_more(origin_tuple, longitudes, latitudes, requestor_tuple)
 
 
 @jwt_required(optional=False)
@@ -78,6 +83,37 @@ def midpoint():
     })
 
 
+def r_check_meetings(active_meeting, account):
+    ## create origin node
+    origin_point = shape.to_shape(account.location)
+    origin_lon = origin_point.x
+    origin_lat = origin_point.y
+    origin_tuple = (origin_lat, origin_lon)
+    longitudes = []
+    latitudes = []
+    for meeting in active_meeting:
+        print(len(active_meeting))
+        if len(active_meeting) != 2:
+            print("More than two participants")
+            origin_point = shape.to_shape(account.location)
+            origin_lon = origin_point.x
+            origin_lat = origin_point.y
+            longitudes.append(origin_lon)
+            latitudes.append(origin_lat)
+            break
+
+    if len(active_meeting) == 2:
+        participants_meeting = identify_partner(active_meeting, account)
+        dest_point = shape.to_shape(participants_meeting.location)
+        dest_lon = dest_point.x
+        dest_lat = dest_point.y
+        destination = (dest_lat, dest_lon)
+        print("just two participants")
+        return osmnx_service.r_midpoint_two(origin_tuple, destination)
+
+    return osmnx_service.midpoint_more(origin_tuple, longitudes, latitudes)
+
+
 @jwt_required(optional=False)
 def get_requestor_midpoint():
     username = get_jwt_identity()
@@ -93,7 +129,7 @@ def get_requestor_midpoint():
             "route_info": "None",
         })
 
-    route_info = check_meetings(active_meeting, account)
+    route_info = r_check_meetings(active_meeting, account)
     db.session.commit()
     db.session.remove()
 

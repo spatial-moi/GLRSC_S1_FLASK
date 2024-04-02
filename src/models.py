@@ -74,7 +74,8 @@ class AccountRequest(db.Model, Base):
 class ActiveMeeting(db.Model, Base):
     id = db.Column(db.Integer, primary_key=True, nullable=False, unique=True, autoincrement=True)
     created = db.Column(db.DateTime(timezone=True),
-                        default=datetime.now)  # The Date of the Instance Creation => Created one Time when Instantiation
+                        default=datetime.now)  # The Date of the Instance Creation => Created one Time when
+    # Instantiation
     updated = db.Column(db.DateTime(timezone=True), default=datetime.now,
                         onupdate=datetime.now)  # The Date of the Instance Update => Changed with Every Update
     firstname = db.Column(db.String(50), nullable=False)
@@ -82,3 +83,4 @@ class ActiveMeeting(db.Model, Base):
     account_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=True)
     location = Column(Geometry('POINT', srid=4326, spatial_index=True), nullable=True)
     meeting_request_id = db.Column(db.Integer, primary_key=False, nullable=True, unique=False)
+    owner = db.Column(db.String(50), nullable=True)
