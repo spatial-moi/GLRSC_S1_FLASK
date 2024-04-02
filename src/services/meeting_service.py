@@ -111,7 +111,7 @@ def r_check_meetings(active_meeting, account):
         print("just two participants")
         return osmnx_service.r_midpoint_two(origin_tuple, destination)
 
-    return osmnx_service.midpoint_more(origin_tuple, longitudes, latitudes)
+    return osmnx_service.r_midpoint_more(origin_tuple, longitudes, latitudes)
 
 
 @jwt_required(optional=False)

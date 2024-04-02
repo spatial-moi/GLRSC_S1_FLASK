@@ -10,7 +10,7 @@ def midpoint_two(origin, destination):
     print(threading.active_count())
     print(threading.enumerate())
     print(threading.current_thread())
-    user_graph = osmnx.graph_from_point(origin, 2000, 'network', 'walk')
+    user_graph = osmnx.graph_from_point(destination, 2000, 'network', 'walk')
 
     print(user_graph)
 
@@ -23,7 +23,7 @@ def midpoint_two(origin, destination):
 
     ## Route
 
-    route = networkx.shortest_path(user_graph, originNode, destinationNode)
+    route = networkx.shortest_path(user_graph, destinationNode, originNode)
     print("the route")
     print(route)
     midpoint_val = math.trunc(len(route) / 2 - 1)
@@ -46,7 +46,7 @@ def r_midpoint_two(origin, destination):
     print(threading.active_count())
     print(threading.enumerate())
     print(threading.current_thread())
-    user_graph = osmnx.graph_from_point(destination, 2000, 'network', 'walk')
+    user_graph = osmnx.graph_from_point(origin, 2000, 'network', 'walk')
 
     print(user_graph)
 
