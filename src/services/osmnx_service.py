@@ -83,6 +83,7 @@ def midpoint_more(origin, longitudes, latitudes, requestor_tuple):
     midpoint_y = average_y(latitudes)
 
     midpoint_tuple = (midpoint_x, midpoint_y)
+    print(midpoint_tuple)
     user_graph = osmnx.graph_from_point(requestor_tuple, 2000, 'network', 'walk')
 
     midpointNode = osmnx.nearest_nodes(user_graph, midpoint_tuple[1], midpoint_tuple[0])
@@ -103,6 +104,7 @@ def r_midpoint_more(origin, longitudes, latitudes):
     midpoint_y = average_y(latitudes)
 
     midpoint_tuple = (midpoint_x, midpoint_y)
+    print(midpoint_tuple)
     user_graph = osmnx.graph_from_point(origin, 2000, 'network', 'walk')
 
     midpointNode = osmnx.nearest_nodes(user_graph, midpoint_tuple[1], midpoint_tuple[0])
@@ -119,19 +121,10 @@ def r_midpoint_more(origin, longitudes, latitudes):
 
 
 def average_x(longitudes):
-    total_x = 0
-    for longitude in longitudes:
-        print(total_x)
-        total_x = longitude + total_x
-    new_x = total_x / len(longitudes)
-    return new_x
+    mean_x = sum(longitudes)/len(longitudes)
+    return mean_x
 
 
 def average_y(latitudes):
-    total_y = 0
-    for latitude in latitudes:
-        print(total_y)
-        total_y = latitude + total_y
-
-    new_y = total_y / len(latitudes)
-    return new_y
+    mean_y = sum(latitudes)/len(latitudes)
+    return mean_y

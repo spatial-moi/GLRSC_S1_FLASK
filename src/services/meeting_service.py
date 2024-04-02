@@ -98,6 +98,8 @@ def r_check_meetings(active_meeting, account):
             origin_point = shape.to_shape(account.location)
             origin_lon = origin_point.x
             origin_lat = origin_point.y
+            print(origin_lat)
+            print(origin_lon)
             longitudes.append(origin_lon)
             latitudes.append(origin_lat)
             break
@@ -111,6 +113,8 @@ def r_check_meetings(active_meeting, account):
         print("just two participants")
         return osmnx_service.r_midpoint_two(origin_tuple, destination)
 
+    print(longitudes)
+    print(latitudes)
     return osmnx_service.r_midpoint_more(origin_tuple, longitudes, latitudes)
 
 
