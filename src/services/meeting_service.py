@@ -30,7 +30,6 @@ def check_meetings(active_meeting, account):
             origin_lat = origin_point.y
             longitudes.append(origin_lon)
             latitudes.append(origin_lat)
-            break
 
     if len(active_meeting) == 2:
         participants_meeting = identify_partner(active_meeting, account)
@@ -106,7 +105,6 @@ def r_check_meetings(active_meeting, account):
             print(origin_lon)
             longitudes.append(origin_lon)
             latitudes.append(origin_lat)
-            break
 
     if len(active_meeting) == 2:
         participants_meeting = identify_partner(active_meeting, account)
