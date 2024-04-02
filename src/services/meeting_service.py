@@ -78,7 +78,7 @@ def midpoint():
                                                                                                         "location "
                                                                                                         "for "
                                                                                                         "your "
-                                                                                                        "meeting",
+                                                                                                        "meeting. Arrive within 15 minutes.",
         "route_info": route_info
     })
 
