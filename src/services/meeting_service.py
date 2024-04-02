@@ -20,10 +20,11 @@ def check_meetings(active_meeting, account):
     origin_tuple = (origin_lat, origin_lon)
     longitudes = []
     latitudes = []
-    for meeting in active_meeting:
-        print(len(active_meeting))
-        if len(active_meeting) != 2:
-            print("More than two participants")
+
+    if len(active_meeting) != 2:
+        print("More than two participants")
+        for meeting in active_meeting:
+            print(len(active_meeting))
             origin_point = shape.to_shape(meeting.location)
             origin_lon = origin_point.x
             origin_lat = origin_point.y
@@ -45,6 +46,9 @@ def check_meetings(active_meeting, account):
     requestor_lon = requestor_point.x
     requestor_lat = requestor_point.y
     requestor_tuple = (requestor_lat, requestor_lon)
+    print("latitude and longitude list")
+    print(latitudes)
+    print(longitudes)
     return osmnx_service.midpoint_more(origin_tuple, longitudes, latitudes, requestor_tuple)
 
 
@@ -91,10 +95,10 @@ def r_check_meetings(active_meeting, account):
     origin_tuple = (origin_lat, origin_lon)
     longitudes = []
     latitudes = []
-    for meeting in active_meeting:
-        print(len(active_meeting))
-        if len(active_meeting) != 2:
-            print("More than two participants")
+    if len(active_meeting) != 2:
+        print("More than two participants")
+        for meeting in active_meeting:
+            print(len(active_meeting))
             origin_point = shape.to_shape(meeting.location)
             origin_lon = origin_point.x
             origin_lat = origin_point.y
