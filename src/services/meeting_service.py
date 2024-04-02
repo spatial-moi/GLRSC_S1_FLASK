@@ -24,7 +24,7 @@ def check_meetings(active_meeting, account):
         print(len(active_meeting))
         if len(active_meeting) != 2:
             print("More than two participants")
-            origin_point = shape.to_shape(account.location)
+            origin_point = shape.to_shape(meeting.location)
             origin_lon = origin_point.x
             origin_lat = origin_point.y
             longitudes.append(origin_lon)
@@ -95,7 +95,7 @@ def r_check_meetings(active_meeting, account):
         print(len(active_meeting))
         if len(active_meeting) != 2:
             print("More than two participants")
-            origin_point = shape.to_shape(account.location)
+            origin_point = shape.to_shape(meeting.location)
             origin_lon = origin_point.x
             origin_lat = origin_point.y
             print(origin_lat)

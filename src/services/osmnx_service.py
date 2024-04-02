@@ -96,7 +96,7 @@ def midpoint_more(origin, longitudes, latitudes, requestor_tuple):
     print(midpoint_lat)
     print(midpoint_long)
     refined_midpoint_tuple = (midpoint_lat, midpoint_long)
-    locations = [origin, midpoint_tuple]
+    locations = [origin, refined_midpoint_tuple]
     return locations
 
 
